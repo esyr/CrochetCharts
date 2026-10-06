@@ -75,3 +75,14 @@ if(WIN32)
     install(PROGRAMS ${QT_LIBS_WINDOWS} ${QT_DEPS_WINDOWS} DESTINATION bin)
     install(DIRECTORY ${QT_PLUGINS_WINDOWS} DESTINATION plugins)
 endif()
+
+add_custom_command(
+    TARGET ${EXE_NAME} PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $/../icons
+)
+add_custom_command(
+    TARGET ${EXE_NAME} PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_CURRENT_SOURCE_DIR}/../images
+            $/../icons
+)
